@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-def print_list_integer(my_list=[]):
-    for item in my_list:
-        if not isinstance(item, int):
-            raise TypeError("list must contain only integers")
-        print("{:d}".format(item))
+print_list_integer = __import__('0-print_list_integer').print_list_integer
 
-list=[1,2,3]
-print_list_integer(list)
+my_list = [1, 2, 3, 4, 5]
+print_list_integer(my_list)
