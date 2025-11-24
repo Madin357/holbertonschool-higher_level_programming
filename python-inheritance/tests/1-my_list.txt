@@ -1,4 +1,6 @@
 >>> MyList = __import__('1-my_list').MyList
+
+# --- Original required test ---
 >>> my_list = MyList()
 >>> my_list.append(1)
 >>> my_list.append(4)
@@ -11,3 +13,25 @@
 [1, 2, 3, 4, 5]
 >>> print(my_list)
 [1, 4, 2, 3, 5]
+
+# --- Test: print_sorted() with negative numbers ---
+>>> neg_list = MyList()
+>>> neg_list.append(-5)
+>>> neg_list.append(10)
+>>> neg_list.append(0)
+>>> neg_list.append(-1)
+>>> print(neg_list)
+[-5, 10, 0, -1]
+>>> neg_list.print_sorted()
+[-5, -1, 0, 10]
+>>> print(neg_list)
+[-5, 10, 0, -1]
+
+# --- Test: print_sorted() on empty list ---
+>>> empty_list = MyList()
+>>> print(empty_list)
+[]
+>>> empty_list.print_sorted()
+[]
+>>> print(empty_list)
+[]
