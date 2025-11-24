@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """
 Module 0-lookup
-Provides a function that returns the list of attributes and methods of an object.
+Provides a function that returns the list of attributes and methods
+of an object.
 """
+
 
 def lookup(obj):
     """
