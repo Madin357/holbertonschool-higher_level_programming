@@ -1,55 +1,35 @@
 #!/usr/bin/python3
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+"""
+Module 7-base_geometry
+Defines a BaseGeometry class with area() and integer_validator().
+"""
 
-bg = BaseGeometry()
 
-print(bg)
+class BaseGeometry:
+    """Class BaseGeometry with validation methods."""
 
-try:
-    bg.area()
-except Exception as e:
-    print("[{}] {}".format(type(e).__name__, e))
+    def area(self):
+        """
+        Raise an exception because area() is not implemented.
 
-# integer_validator tests
-try:
-    bg.integer_validator("age")
-except Exception as e:
-    print("[{}] {}".format(type(e).__name__, e))
+        Raises:
+            Exception: always with message 'area() is not implemented'
+        """
+        raise Exception("area() is not implemented")
 
-try:
-    bg.integer_validator("age", (4,))
-except Exception as e:
-    print("[{}] {}".format(type(e).__name__, e))
+    def integer_validator(self, name, value):
+        """
+        Validate that value is a positive integer.
 
-try:
-    bg.integer_validator("age", [3])
-except Exception as e:
-    print("[{}] {}".format(type(e).__name__, e))
+        Args:
+            name (str): the name of the parameter.
+            value: the value to validate.
 
-try:
-    bg.integer_validator("age", True)
-except Exception as e:
-    print("[{}] {}".format(type(e).__name__, e))
-
-try:
-    bg.integer_validator("age", {3, 4})
-except Exception as e:
-    print("[{}] {}".format(type(e).__name__, e))
-
-try:
-    bg.integer_validator("age", None)
-except Exception as e:
-    print("[{}] {}".format(type(e).__name__, e))
-
-try:
-    bg.integer_validator("age", 0)
-except Exception as e:
-    print("[{}] {}".format(type(e).__name__, e))
-
-try:
-    bg.integer_validator("age", -5)
-except Exception as e:
-    print("[{}] {}".format(type(e).__name__, e))
-
-# Valid case (should print nothing)
-bg.integer_validator("age", 5)
+        Raises:
+            TypeError: if value is not an integer.
+            ValueError: if value <= 0.
+        """
+        if type(value) is not int:
+            raise TypeError(f"{name} must be an integer")
+        if value <= 0:
+            raise ValueError(f"{name} must be greater than 0")
