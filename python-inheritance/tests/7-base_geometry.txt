@@ -1,0 +1,30 @@
+BaseGeometry tests
+==================
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry()
+
+Test area() exception
+>>> BaseGeometry.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
+
+Test integer_validator: not an integer
+>>> BaseGeometry.integer_validator("width", "3")
+Traceback (most recent call last):
+...
+TypeError: width must be an integer
+
+Test integer_validator: value <= 0
+>>> BaseGeometry.integer_validator("height", 0)
+Traceback (most recent call last):
+...
+ValueError: height must be greater than 0
+
+>>> BaseGeometry.integer_validator("height", -7)
+Traceback (most recent call last):
+...
+ValueError: height must be greater than 0
+
+Test integer_validator: valid case (should print nothing)
+>>> BaseGeometry.integer_validator("size", 5)
