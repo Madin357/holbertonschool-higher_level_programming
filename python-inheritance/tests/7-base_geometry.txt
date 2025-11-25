@@ -1,30 +1,58 @@
-BaseGeometry tests
-==================
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
 
->>> BaseGeometry = __import__('7-base_geometry').BaseGeometry()
-
-Test area() exception
->>> BaseGeometry.area()
+# area() should raise the correct Exception
+>>> bg.area()
 Traceback (most recent call last):
 ...
 Exception: area() is not implemented
 
-Test integer_validator: not an integer
->>> BaseGeometry.integer_validator("width", "3")
+# integer_validator: missing value argument
+>>> bg.integer_validator("age")
 Traceback (most recent call last):
 ...
-TypeError: width must be an integer
+TypeError
 
-Test integer_validator: value <= 0
->>> BaseGeometry.integer_validator("height", 0)
+# integer_validator: not an integer (tuple)
+>>> bg.integer_validator("age", (4,))
 Traceback (most recent call last):
 ...
-ValueError: height must be greater than 0
+TypeError: age must be an integer
 
->>> BaseGeometry.integer_validator("height", -7)
+# integer_validator: not an integer (list)
+>>> bg.integer_validator("age", [3])
 Traceback (most recent call last):
 ...
-ValueError: height must be greater than 0
+TypeError: age must be an integer
 
-Test integer_validator: valid case (should print nothing)
->>> BaseGeometry.integer_validator("size", 5)
+# integer_validator: not an integer (bool)
+>>> bg.integer_validator("age", True)
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+# integer_validator: not an integer (set)
+>>> bg.integer_validator("age", {3, 4})
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+# integer_validator: not an integer (None)
+>>> bg.integer_validator("age", None)
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+# integer_validator: value <= 0
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+...
+ValueError: age must be greater than 0
+
+>>> bg.integer_validator("age", -2)
+Traceback (most recent call last):
+...
+ValueError: age must be greater than 0
+
+# integer_validator: valid case (no output)
+>>> bg.integer_validator("age", 5)
