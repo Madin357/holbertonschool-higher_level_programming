@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Fetches https://intranet.hbtn.io/status using urllib
+and displays information about the response body.
+"""
+
 import urllib.request
 
 if __name__ == "__main__":
