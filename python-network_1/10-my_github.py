@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 Uses GitHub API with Basic Authentication to display your GitHub user id.
+Prints None if authentication fails.
 """
 
 import sys
@@ -14,7 +15,9 @@ if __name__ == "__main__":
 
     try:
         response = requests.get(url, auth=(username, token))
-        response.raise_for_status()
-        print(response.json().get("id"))
-    except requests.exceptions.RequestException as e:
-        print("Error:", e)
+        if response.status_code == 200:
+            print(response.json().get("id"))
+        else:
+            print(None)
+    except requests.exceptions.RequestException:
+        print(None)
