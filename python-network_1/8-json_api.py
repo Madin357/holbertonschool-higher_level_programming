@@ -19,7 +19,9 @@ if __name__ == "__main__":
         response = requests.post(url, data={"q": letter})
         response_json = response.json()
         if response_json:
-            print("[{}] {}".format(response_json.get("id"), response_json.get("name")))
+            user_id = response_json.get("id")
+            user_name = response_json.get("name")
+            print("[{}] {}".format(user_id, user_name))
         else:
             print("No result")
     except ValueError:
